@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+
+<html>
+	<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+	<div class="login">
+		<h1>Chat</h1>
+		<hr />
+		<div class="scrolling-box">
+			{% if messages %}
+			{% for message in messages %}
+			<div class="message">{{ message.author }}: {{message.text}}</div>
+			{% endfor %}
+			{% else %}
+			<p>There are no messages in this conversation</p>
+			{% endif %}
+		</div>
+		<form class="login" action="" method="post" novalidate>
+			{{ form.hidden_tag() }}
+			{{form.message(size=128, placeholder="Write message")}}
+			{{form.submit(type="submit", class="registerbtn")}}
+		</form>
+	</div>
+</html>
+{% endblock content %}
